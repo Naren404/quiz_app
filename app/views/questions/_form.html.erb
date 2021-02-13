@@ -1,0 +1,55 @@
+<%= form_for @question, multipart:true do |f| %>
+        <div class="divide-y divide-gray-200">
+          <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+            <div class="flex flex-col">
+              <label class="leading-loose">Question Category</label>
+                  <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+            </div>
+
+            <div class="flex flex-col">
+              <label class="leading-loose">Question Text</label>
+              <%= f.text_field :question_text ,class:"px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"%>
+            </div>
+            <%= f.fields_for :answer, Answer.new do |c| %>
+            <div class="flex items-center space-x-4">
+              <div class="flex flex-col">
+                <label class="leading-loose">Answer 1</label>
+                <div class="relative focus-within:text-gray-600 text-gray-400">
+                  <%= c.text_field :ans1, class:"border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"  %>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <label class="leading-loose">Answer 2</label>
+                <div class="relative focus-within:text-gray-600 text-gray-400">
+                  <%= c.text_field :ans2, class:"border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"  %>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center space-x-4">
+              <div class="flex flex-col">
+                <label class="leading-loose">Answer 3</label>
+                <div class="relative focus-within:text-gray-600 text-gray-400">
+                  <%= c.text_field :ans3, class:"border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"  %>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <label class="leading-loose">Answer 4</label>
+                <div class="relative focus-within:text-gray-600 text-gray-400">
+                  <%= c.text_field :ans4, class:"border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"  %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+            <div class="flex flex-col">
+              <label class="leading-loose">Correct Answer Option</label>
+              <%= f.select :correct_answer, options_for_select(["1", "2", "3", "4"])%>
+            </div>
+          </div>
+          <div class="pt-4 flex items-center space-x-4">
+            <%= link_to :back ,class:"flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" do %>
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
+                <% end %>
+                <%= f.submit class:"bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" %>
+          </div>
+        </div>
+        <% end %>
