@@ -1,9 +1,5 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
-<%= button_to "logout", destroy_user_session_path, method: :delete  %>
 <% if current_user.admin? %>
-	hello
+	<%= render partial: "shared/adminhomepage" %>
 <% else %>
-	hi
+		<%= render partial: "shared/userhomepage" %>
 <% end %>
