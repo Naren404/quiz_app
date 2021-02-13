@@ -1,0 +1,56 @@
+<!-----nav bar -->
+
+<nav class="flex items-center bg-white-800 p-3 flex-wrap">
+      <a href="#" class="p-2 mr-4 inline-flex items-center">
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          class="fill-current text-white h-8 w-8 mr-2"
+        >        </svg>
+        <span class="text-xl text-grey-800 font-bold uppercase tracking-wide"
+          >Quiz App</span
+        >
+      </a>
+      <button
+        class="text-black inline-flex p-3 hover:bg-white-400 rounded lg:hidden ml-auto hover:text-black outline-none nav-toggler"
+        data-target="#navigation"
+      >
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+</svg>
+      </button>
+      <div
+        class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto"
+        id="navigation"
+      >
+        <div
+          class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto"
+        >          <a
+            href="#"
+            class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-800 items-center justify-center hover:bg-gray-900 hover:text-white"
+          >
+            <span>About</span>
+          </a>
+          <%= button_to  destroy_user_session_path,class:"lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-800 items-center justify-center hover:bg-gray-900 hover:text-white", method: :delete do %>
+            <span>
+        	<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+			  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+			</svg>
+			</span>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function() {
+  $(".nav-toggler").each(function(_, navToggler) {
+    var target = $(navToggler).data("target");
+    $(navToggler).on("click", function() {
+      $(target).animate({
+        height: "toggle"
+      });
+    });
+  });
+});</script>
