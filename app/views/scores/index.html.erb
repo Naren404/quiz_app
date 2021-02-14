@@ -1,11 +1,12 @@
 <%= render partial: "shared/navbar" %>
 
 <!------------score calculations------------------------>
+
 <% score = 0 %>
 <% answers=[] %>
     <% @attempted_questions.each_with_index do |question,index| %>
         <% if question.id == @attempt.q1 or question.id == @attempt.q2 or question.id == @attempt.q3 or question.id == @attempt.q4 or question.id == @attempt.q5 or question.id == @attempt.q6 or question.id == @attempt.q7 or question.id == @attempt.q8 or question.id == @attempt.q9 or question.id == @attempt.q10 %>
-          <% answers = answers.append(question.correct_answer) %>
+          <% answers = answers.prepend(question.correct_answer) %>
         <% end %>
     <% end %>
 
@@ -32,8 +33,8 @@
       </div>
       <div class="flex flex-wrap justify-center">
         <%= form_for @score do |f| %>
-          <%= f.hidden_field(:score, value:score) %>
-          <%= f.submit "Generate Result",class:"mx-2 mt-4  bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center" %>
+          <%= f.hidden_field(:attempt_score, value:score) %>
+          <%= f.submit "Generate Result",class:"mx-2 mt-4  bg-white tracking-wide text-gray-800 font-bold cursor-pointer rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center" %>
         <% end %>
       </div>
     </div>

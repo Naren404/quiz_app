@@ -1,7 +1,32 @@
 <%= render partial: "shared/navbar" %>
 
+
+
 <!------home page for users---->
-<div class="flex items-center justify-center h-screen bg-gray-100">
+<div class="flex items-center mt-2 py-2  justify-center bg-gray-100">
+    <div class="bg-white rounded-lg shadow-lg p-5 md:p-20 mx-2">
+      <div class="text-center">
+        <h4 class="text-3xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-3xl sm:leading-none md:text-4xl">
+          Welcome <span class="text-indigo-600"><%= current_user.email %></span>
+        </h4>
+    </div>
+      <div class="grid md:grid-cols-4 sm:grid-cols-1 gap-2">
+        <div class="ml-8 mr-8 mt-4">
+            <div class="bg-white flex items-center p-2 rounded-xl shadow border">
+              <div class="flex-grow p-3">
+                  <a class="h-6 tracking-wide text-gray-800 font-bold rounded py-2 inline-flex items-center">
+                      <span >Total Attempts(<%= @attempt %>)</span>
+                    </a>
+              </div>
+            </div>
+      </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="flex items-center justify-center bg-gray-100">
+  
     <div class="bg-white rounded-lg shadow-lg p-5 md:p-20 mx-2">
       <div class="text-center">
         <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
@@ -28,4 +53,3 @@
       </div>
     </div>
 </div>
-
