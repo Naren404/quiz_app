@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   resources :attempts
   resources :scores
 
+  get 'attempts/index2'
+
   root 'home#index'
 end

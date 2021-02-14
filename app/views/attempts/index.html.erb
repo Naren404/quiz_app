@@ -1,4 +1,26 @@
 <%= render partial: "shared/navbar" %>
+<% if params[:attempt]=="yes" %>
+  <!----------------all the contents here------------------------->
+<div class="grid md:grid-cols-4 sm:grid-cols-1 gap-2">
+  <% @attempts.each do |attempt| %>
+  <%= link_to attempt_path(attempt) do %>
+        <div class="ml-8 mr-8 mt-4">
+            <div class="bg-white flex items-center p-2 rounded-xl shadow border">
+              <div class="flex-grow p-3">
+                  <span class="h-6 tracking-wide text-gray-800 font-bold rounded py-2 inline-flex items-center">
+                      <span >Attempt: <%= attempt.id %></span>
+                    </span>
+                  <span class="h-6 tracking-wide text-gray-400 font-bold rounded py-2 inline-flex items-center">
+                      <span >attempted on: <%= attempt.created_at.strftime("%d-%b-%Y") %></span>
+                  </span>
+              </div>
+            </div>
+      </div>
+      <% end %>
+  <% end %>
+</div>
+  <!-- ... -->
+<% else %>
 <!-----------------------------------main content--------------------------------------------------------->
 <div class="grid mx-20">
 	<h4 class="sm:text-sm md:text-md lg:text-lg text-gray-700 font-bold">
@@ -31,7 +53,5 @@
  <% end %>
 </div>
 <!-------------------------------------------------------------------------------------------->
-    </div>
-        </div>
-  </div>
-</div>
+<% end %>
+  

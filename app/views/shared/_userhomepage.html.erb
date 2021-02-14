@@ -1,7 +1,5 @@
 <%= render partial: "shared/navbar" %>
 
-
-
 <!------home page for users---->
 <div class="flex items-center mt-2 py-2  justify-center bg-gray-100">
     <div class="bg-white rounded-lg shadow-lg p-5 md:p-20 mx-2">
@@ -14,16 +12,15 @@
         <div class="ml-8 mr-8 mt-4">
             <div class="bg-white flex items-center p-2 rounded-xl shadow border">
               <div class="flex-grow p-3">
-                  <a class="h-6 tracking-wide text-gray-800 font-bold rounded py-2 inline-flex items-center">
+                <%= link_to attempts_path(attempt:"yes"), class:"h-6 tracking-wide text-gray-800 font-bold rounded py-2 inline-flex items-center" do %>
                       <span >Total Attempts(<%= @attempt %>)</span>
-                    </a>
+                    <% end %>
               </div>
             </div>
       </div>
       </div>
     </div>
 </div>
-
 
 <div class="flex items-center justify-center bg-gray-100">
   
