@@ -2,41 +2,30 @@
 
 <!------home page for users---->
 <div class="flex items-center justify-center h-screen bg-gray-100">
-  <div class="container">
     <div class="bg-white rounded-lg shadow-lg p-5 md:p-20 mx-2">
       <div class="text-center">
         <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
           Quiz<span class="text-indigo-600">App</span>
         </h2>
-        <h3 class='text-xl md:text-3xl mt-10'>Test Your Mind</h3>
-        <p class="text-md md:text-xl mt-10">Lets challange you!!!</p>
+        <h3 class='text-xl md:text-3xl mt-2'>Test Your Mind</h3>
+        <h6 class='text-md mt-10'>Select the Quiz Categories.</h6>
       </div>
-      <div class="flex flex-wrap mt-10 justify-center">
-        <div class="m-3">
-          <a href="https://www.facebook.com/QuickToolz" title="Quicktoolz On Facebook"
-             class="md:w-32 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-            <span class="mx-auto">Science</span>
-          </a>
-        </div>
-        <div class="m-3">
-          <a href="https://www.facebook.com/QuickToolz" title="Quicktoolz On Facebook"
-             class="md:w-32 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-            <span class="mx-auto">Sport</span>
-          </a>
-        </div>
-        <div class="m-3">
-          <a href="https://www.facebook.com/QuickToolz" title="Quicktoolz On Facebook"
-             class="md:w-32 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-            <span class="mx-auto">Art</span>
-          </a>
-        </div>
-        <div class="m-3">
-          <a href="https://www.facebook.com/QuickToolz" title="Quicktoolz On Facebook"
-             class="md:w-32 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-            <span class="mx-auto">Sport</span>
-          </a>
-        </div>
+      <div class="flex flex-wrap justify-center mt-4">
+        <%= form_tag attempts_path, method: :get do %>
+        <% @categories.each do |category| %>
+               <%= check_box_tag('quiz_category[]', category.id) %>
+                <span class="mr-4  text-gray-700"><%= category.name %></span>
+        <% end %>
+        <div class="flex flex-wrap justify-center">
+        <%= submit_tag "Attempt Selected Category",class:"mx-2 mt-4  bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center" %>
+        <% end %>
+      </div>
+      </div>
+      <div class="flex flex-wrap justify-center">
+      <%= link_to attempts_path(category:"all"),class:"mx-2 mt-4  bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center" do %>
+      <span class="mx-auto">Attempt All Category</span>
+    <% end %> 
       </div>
     </div>
-  </div>
 </div>
+

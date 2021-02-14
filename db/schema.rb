@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_13_103106) do
+ActiveRecord::Schema.define(version: 2021_02_14_075933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,33 @@ ActiveRecord::Schema.define(version: 2021_02_13_103106) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "attempts", force: :cascade do |t|
+    t.integer "q1"
+    t.integer "q2"
+    t.integer "q3"
+    t.integer "q4"
+    t.integer "q5"
+    t.integer "q6"
+    t.integer "q7"
+    t.integer "q8"
+    t.integer "q9"
+    t.integer "q10"
+    t.integer "ans1"
+    t.integer "ans2"
+    t.integer "ans3"
+    t.integer "ans4"
+    t.integer "ans5"
+    t.integer "ans6"
+    t.integer "ans7"
+    t.integer "ans8"
+    t.integer "ans9"
+    t.integer "ans10"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_attempts_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -41,6 +68,14 @@ ActiveRecord::Schema.define(version: 2021_02_13_103106) do
     t.index ["category_id"], name: "index_questions_on_category_id"
   end
 
+  create_table "scores", force: :cascade do |t|
+    t.integer "attempt_score"
+    t.bigint "attempt_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attempt_id"], name: "index_scores_on_attempt_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -55,5 +90,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_103106) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "attempts", "users"
   add_foreign_key "questions", "categories"
+  add_foreign_key "scores", "attempts"
 end

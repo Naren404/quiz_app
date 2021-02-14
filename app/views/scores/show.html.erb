@@ -1,0 +1,74 @@
+<%= render partial:"shared/navbar" %>
+
+
+<div class="grid mx-20">
+   <div class="flex justify-end  p-3 right-8 mb-4 ">   
+      <div class="mr-2">
+          <a
+             class="md:w-50 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+            <span class="mx-auto">You Scored:<% @score.each do |score| %><%= score.attempt_score %>/10<% end %></span>
+          </a>
+        </div>
+        <div class="mr-2">
+          <a
+             class="md:w-50 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+            <span class="mx-auto">In Percentage:<% @score.each do |score| %><% tot= score.attempt_score.to_f %><%= per = (tot/10)*100 %><% end %> %</span>
+          </a>
+        </div>
+      <div class="mr-2">
+          <a
+             class="md:w-32 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+            <span class="mx-auto">Average:<%= @score_avg %></span>
+          </a>
+        </div>
+    </div>   
+    <!----------------getting all the questions of attemts------------->
+    <% questions=[] %>
+    <% answers=[] %>
+    <% @attempted_questions.each_with_index do |question,index| %>
+        <% if question.id == @attempt.q1 or question.id == @attempt.q2 or question.id == @attempt.q3 or question.id == @attempt.q4 or question.id == @attempt.q5 or question.id == @attempt.q6 or question.id == @attempt.q7 or question.id == @attempt.q8 or question.id == @attempt.q9 or question.id == @attempt.q10 %>
+        	<% questions = questions.append(question.question_text) %>
+        	<% answers = answers.append(question.correct_answer) %>
+        <% end %>
+    <% end %>
+    
+    <% attempt_answer =[@attempt.ans1,@attempt.ans2,@attempt.ans3,@attempt.ans4,@attempt.ans5,@attempt.ans6,@attempt.ans7,@attempt.ans8,@attempt.ans9,@attempt.ans10] %>
+    <!------------------------------------------>
+    <!-----------------------------------------------------------------> 
+     <% @attempted_questions.each_with_index do |question,index| %>
+		<% if question.id == @attempt.q1 or question.id == @attempt.q2 or question.id == @attempt.q3 or question.id == @attempt.q4 or question.id == @attempt.q5 or question.id == @attempt.q6 or question.id == @attempt.q7 or question.id == @attempt.q8 or question.id == @attempt.q9 or question.id == @attempt.q10 %>
+			           <div class="mt-2">  
+					        <h4 class="sm:text-sm md:text-md lg:text-lg text-gray-700 font-bold">
+					        	<% questionmark = "?"if !question.question_text.include?('?') %>
+					            Q.<%= index + 1 %>: <%= question.question_text %><% questionmark %>
+					        </h4>
+			       		</div>
+			       		<% correct_op1 ="text-green-600" if answers[index] == 1 %>
+			       		<% correct_op2 ="text-green-600" if answers[index] == 2 %>
+			       		<% correct_op3 ="text-green-600" if answers[index] == 3 %>
+			       		<% correct_op4 ="text-green-600" if answers[index] == 4 %>
+
+			       		<% attempt_op1 ="text-red-600" if attempt_answer[index] == 1 %>
+			       		<% attempt_op2 ="text-red-600" if attempt_answer[index] == 2 %>
+			       		<% attempt_op3 ="text-red-600" if attempt_answer[index] == 3 %>
+			       		<% attempt_op4 ="text-red-600" if attempt_answer[index] == 4 %>
+
+			            <h4  class="sm:text-sm md:text-md lg:text-lg font-bold <%= correct_op1 %> <%= attempt_op1 %>">
+			                <span class="ml-2">A. <%= question.answer.ans1 %></span>
+			            </h4>
+			            <h4  class="sm:text-sm md:text-md lg:text-lg font-bold <%= correct_op2 %> <%= attempt_op2 %>">
+			                <span class="ml-2">B. <%= question.answer.ans2 %></span>
+			            </h4>
+			            <h4  class="sm:text-sm md:text-md lg:text-lg font-bold <%= correct_op3 %> <%= attempt_op3 %>">
+			                <span class="ml-2">C. <%= question.answer.ans3 %></span>
+			            </h4>
+			            <h4  class="sm:text-sm md:text-md lg:text-lg font-bold <%= correct_op4 %> <%= attempt_op4 %>">
+			                <span class="ml-2">D. <%= question.answer.ans4 %></span>
+            			</h4>
+       	<% end %>
+       <% end %>
+         
+    </div>  
+  </div>
+  </div>
+</div>

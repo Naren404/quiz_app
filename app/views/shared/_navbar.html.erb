@@ -1,7 +1,7 @@
 <!-----nav bar -->
 
 <nav class="flex items-center bg-white-800 p-3 flex-wrap">
-      <a href="#" class="p-2 mr-4 inline-flex items-center">
+  <%= link_to root_path,class:"p-2 mr-4 inline-flex items-center" do %>
         <svg
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +10,7 @@
         <span class="text-xl text-grey-800 font-bold uppercase tracking-wide"
           >Quiz App</span
         >
-      </a>
+      <% end %>
       <button
         class="text-black inline-flex p-3 hover:bg-white-400 rounded lg:hidden ml-auto hover:text-black outline-none nav-toggler"
         data-target="#navigation"

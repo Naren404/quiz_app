@@ -1,0 +1,41 @@
+<%= render partial: "shared/navbar" %>
+
+<!------------score calculations------------------------>
+<% score = 0 %>
+<% answers=[] %>
+    <% @attempted_questions.each_with_index do |question,index| %>
+        <% if question.id == @attempt.q1 or question.id == @attempt.q2 or question.id == @attempt.q3 or question.id == @attempt.q4 or question.id == @attempt.q5 or question.id == @attempt.q6 or question.id == @attempt.q7 or question.id == @attempt.q8 or question.id == @attempt.q9 or question.id == @attempt.q10 %>
+          <% answers = answers.append(question.correct_answer) %>
+        <% end %>
+    <% end %>
+
+    <% attempt_answer =[@attempt.ans1,@attempt.ans2,@attempt.ans3,@attempt.ans4,@attempt.ans5,@attempt.ans6,@attempt.ans7,@attempt.ans8,@attempt.ans9,@attempt.ans10] %>
+    <% answers %>
+    
+    <% attempt_answer.each_with_index do |ans,index|%>
+        <% if !ans.nil? %>
+          <% if ans.to_int == answers[index].to_int %>
+            <% score = score +1 %>
+          <% end %>
+        <% end %>
+    <% end %>
+<!------------------------------------------------------------>
+<!------home page for users---->
+<div class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="bg-white rounded-lg shadow-lg p-5 md:p-20 mx-2">
+      <div class="text-center">
+        <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
+          Quiz<span class="text-indigo-600">App</span>
+        </h2>
+        <h3 class='text-xl md:text-3xl mt-2'>Test Your Mind</h3>
+        <h6 class='text-md mt-10'>Great! Thank you for attempting the test. Click below to check your result.</h6>
+      </div>
+      <div class="flex flex-wrap justify-center">
+        <%= form_for @score do |f| %>
+          <%= f.hidden_field(:score, value:score) %>
+          <%= f.submit "Generate Result",class:"mx-2 mt-4  bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center" %>
+        <% end %>
+      </div>
+    </div>
+</div>
+
