@@ -1,6 +1,10 @@
 class AttemptsController < ApplicationController
 
 	def index
+		if params[:attempt]=="yes"
+			@attempts=current_user.attempt.all
+		end
+
 		if params[:category]=="all"
 			@questions=Question.order('RANDOM()').limit(10)
 		else
@@ -10,7 +14,10 @@ class AttemptsController < ApplicationController
 	end
 
 	def show
-		
+		@attempt=Attempt.find(params[:id])
+		@attempted_questions = Question.all
+		@score=Score.where('attempt_id = ?', params[:id])
+		@score_avg=Score.average(:attempt_score)
 	end
 
 	def create
