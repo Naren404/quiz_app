@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   
   resources :questions
   resources :categories
+  resources :attempts
+  resources :scores
+
   root 'home#index'
 end

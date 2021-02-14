@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :attempt
   
   validates :email, presence: true
   validates :password, presence: true
