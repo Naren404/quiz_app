@@ -3,11 +3,12 @@ class QuestionsController < ApplicationController
 	before_action :set_question, only: [:update, :destroy]
 
 	def index
-		@questions = Question.all
+		@questions = Question.order("created_at DESC")
 	end
 
 	def new
 		@question=Question.new
+    @question.build_answer
 	end
 
 	def create
@@ -49,7 +50,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:question_text,:category_id, :correct_answer,answer_attributes: [:ans1,:ans2,:ans3,:ans4])
+      params.require(:question).permit(:question_text,:category_id, :correct_answer,answer_attributes: [:id,:ans1,:ans2,:ans3,:ans4])
     end
 
 end

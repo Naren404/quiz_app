@@ -14,12 +14,12 @@ class ScoresController < ApplicationController
 	end
 
 	def create
-		@attempt=current_user.attempt.last
+		@attempt=current_or_guest_user.attempt.last
 		@score = @attempt.score.build(score_params)
     
         respond_to do |format|
           if @attempt.save
-          	@id=current_user.attempt.last.id
+          	@id=current_or_guest_user.attempt.last.id
             format.html { redirect_to controller: 'scores', action:'show', id:@id }
           else
             format.html { render :new }

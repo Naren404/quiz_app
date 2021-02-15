@@ -12,6 +12,9 @@
                     </span>
                   <span class="h-6 tracking-wide text-gray-400 font-bold rounded py-2 inline-flex items-center">
                       <span >attempted on: <%= attempt.created_at.strftime("%d-%b-%Y") %></span>
+                  </span><br />
+                  <span class="h-6 tracking-wide text-blue-300 font-bold rounded py-2 inline-flex items-center">
+                      <span >Your Score: <% attempt.score.each do |score| %><%= score.attempt_score %>/10<% end %></span>
                   </span>
               </div>
             </div>
@@ -54,4 +57,4 @@
 </div>
 <!-------------------------------------------------------------------------------------------->
 <% end %>
-  
+

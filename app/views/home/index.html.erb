@@ -1,5 +1,9 @@
-<% if current_user.admin? %>
-	<%= render partial: "shared/adminhomepage" %>
+<% if !current_user.nil? %>
+	<% if current_user.admin? %>
+		<%= render partial: "shared/adminhomepage" %>
+	<% else %>
+			<%= render partial: "shared/userhomepage" %>
+	<% end %>
 <% else %>
-		<%= render partial: "shared/userhomepage" %>
+	<%= render partial: "shared/userhomepage" %>
 <% end %>

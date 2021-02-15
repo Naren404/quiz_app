@@ -46,3 +46,4 @@ end
 gem 'devise'
 gem 'cancancan'
 gem 'rexml'
+gem 'devise-guests'
