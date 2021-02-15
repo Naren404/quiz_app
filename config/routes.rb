@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :attempts
   resources :scores
+  resources :admin
+  resources :guests
 
   get 'attempts/index2'
 

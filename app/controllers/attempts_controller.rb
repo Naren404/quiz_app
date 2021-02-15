@@ -2,7 +2,7 @@ class AttemptsController < ApplicationController
 
 	def index
 		if params[:attempt]=="yes"
-			@attempts=current_user.attempt.all
+			@attempts=current_or_guest_user.attempt.all
 		end
 
 		if params[:category]=="all"
@@ -10,7 +10,7 @@ class AttemptsController < ApplicationController
 		else
 			@questions= Question.order('RANDOM()').where(["category_id IN (?) ", params[:quiz_category]]).limit(10)
 		end
-		@attempt=current_user.attempt.build
+		@attempt=current_or_guest_user.attempt.build
 	end
 
 	def show
@@ -21,11 +21,11 @@ class AttemptsController < ApplicationController
 	end
 
 	def create
-		@attempt = current_user.attempt.build(attempt_params)
+		@attempt = current_or_guest_user.attempt.build(attempt_params)
     
         respond_to do |format|
           if @attempt.save
-          	@id=current_user.attempt.last.id
+          	@id=current_or_guest_user.attempt.last.id
             format.html { redirect_to controller: 'scores', action:'index', id:@id, notice: 'attempt was successfully created.' }
           else
             format.html { render :new }

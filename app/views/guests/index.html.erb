@@ -1,0 +1,35 @@
+<%= render partial: "shared/navbar" %>
+
+<!------home page for guest users---->
+<div class="flex h-screen items-center justify-center bg-gray-100">
+  
+    <div class="bg-white rounded-lg shadow-lg p-5 md:p-20 mx-2">
+      <div class="text-center">
+        <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
+          Quiz<span class="text-indigo-600">App</span>
+        </h2>
+        <h3 class='text-xl md:text-3xl mt-2'>Test Your Mind</h3>
+        </div>
+        <div class="text-center">
+          <h6 class='text-md mt-10'>Select the Quiz Categories.</h6>
+        </div>
+      
+      <div class="flex flex-wrap justify-center mt-4">
+        <%= form_tag attempts_path, method: :get do %>
+        <% @categories.each do |category| %>
+               <%= check_box_tag('quiz_category[]', category.id) %>
+                <span class="mr-4  text-gray-700"><%= category.name %></span>
+        <% end %>
+                  <div class="flex flex-wrap justify-center">
+                  <%= submit_tag "Attempt Selected Category",class:"mx-2 mt-4  bg-white tracking-wide cursor-pointer text-gray-800 font-bold rounded border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center" %>
+                  
+                </div>
+      </div>
+      <% end %>
+          <div class="flex flex-wrap justify-center">
+          <%= link_to attempts_path(category:"all"),class:"mx-2 mt-4  bg-white tracking-wide text-gray-800 font-bold rounded cursor-pointer border-2 border-blue-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center" do %>
+          <span class="mx-auto">Attempt All Category</span>
+        <% end %> 
+          </div>
+</div>
+</div>
