@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
 	end
 
 	def new
+    @categories=Category.all
 		@question=Question.new
     @question.build_answer
 	end
