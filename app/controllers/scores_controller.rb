@@ -1,4 +1,5 @@
 class ScoresController < ApplicationController
+
 	def index
 		@attempt=Attempt.find(params[:id])
 		@attempted_questions = Question.all
@@ -16,9 +17,11 @@ class ScoresController < ApplicationController
 	def create
 		@attempt=current_or_guest_user.attempt.last
 		@score = @attempt.score.build(score_params)
-    
+    	
         respond_to do |format|
-          if @attempt.save
+          if @score.save
+          	@user=current_or_guest_user
+          	ScoremailerMailer.score_email(@user,@score,@attempt).deliver_now
           	@id=current_or_guest_user.attempt.last.id
             format.html { redirect_to controller: 'scores', action:'show', id:@id }
           else

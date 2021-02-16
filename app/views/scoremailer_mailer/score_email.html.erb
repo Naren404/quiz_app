@@ -1,0 +1,21 @@
+<html>
+   
+   <head>
+      <meta content = 'text/html; charset = UTF-8' http-equiv = 'Content-Type' />
+   </head>
+   
+   <body>
+      <h1>Thankyou, <%= @user.email %>, for attending the quiz.</h1>
+      
+      <p>
+         You have successfully completed the quiz and scored <b><%= @score.attempt_score %></b> out of 10. 
+      </p>
+      
+      <p>
+         To view your detailed score card, please visit the link: 
+         <%= @url %>.
+      </p>
+      
+      <p>Thanks and have a great day!</p>
+   </body>
+</html>

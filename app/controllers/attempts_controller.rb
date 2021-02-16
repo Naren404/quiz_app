@@ -22,7 +22,7 @@ class AttemptsController < ApplicationController
 
 	def create
 		@attempt = current_or_guest_user.attempt.build(attempt_params)
-    
+    	@user=current_or_guest_user
         respond_to do |format|
           if @attempt.save
           	@id=current_or_guest_user.attempt.last.id
