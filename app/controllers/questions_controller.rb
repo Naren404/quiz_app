@@ -51,7 +51,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:question_text,:category_id, :correct_answer,answer_attributes: [:id,:ans1,:ans2,:ans3,:ans4])
+      params.require(:question).permit(:question_text, :correct_answer,category_ids:[],answer_attributes: [:id,:ans1,:ans2,:ans3,:ans4])
     end
 
 end

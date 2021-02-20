@@ -8,7 +8,7 @@ class AttemptsController < ApplicationController
 		if params[:category]=="all"
 			@questions=Question.order('RANDOM()').limit(10)
 		else
-			@questions= Question.order('RANDOM()').where(["category_id IN (?) ", params[:quiz_category]]).limit(10)
+			@questions= Question.joins(:question_categories).order('RANDOM()').where(["question_categories.category_id IN (?) ", params[:quiz_category]]).limit(10)
 		end
 		@attempt=current_or_guest_user.attempt.build
 	end

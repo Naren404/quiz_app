@@ -9,7 +9,9 @@
           <div class="bg-white w-full flex items-center p-2 rounded-xl shadow border">
           <div class="flex-grow p-3">
             <a class="h-6 bg-white tracking-wide text-gray-800 font-bold rounded border-2 border-blue-400 hover:border-blue-400 hover:bg-blue-400 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-            <span class="mx-auto"><%= question.category.name %></span>
+            <span class="mx-auto"><% question.question_categories.each do |category|%>
+              <%= category.category.name %><% end %>
+            </span>
             </a>
 
             <div class="font-semibold text-gray-700">
